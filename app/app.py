@@ -6,6 +6,8 @@ import pandas as pd
 import datetime
 from flask_socketio import SocketIO
 
+from transferlearning_main import TransferLearning
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'qwerty123'
 
@@ -170,5 +172,32 @@ def upload_photo():
 
     return '', 200
 
+@app.route("/transfer_learning")
+def transfer_learning():
+    return render_template("transfer_learning.html")
+
+@socketio.on('run')
+def handle_message(message):
+    if not tl.is_running :
+        socketio.start_background_task(target=tl.run)
+    else :
+        socketio.emit("feedback", "Transfer Learning already running.")
+
+@socketio.on('check')    
+def handle_message(message):
+    print("status", tl.is_running)
+    socketio.emit("status", tl.is_running)
+
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    global tl 
+    tl = TransferLearning(socketio,
+                        event="feedback",
+                        model_name=os.path.join(path, facerecognition_model), 
+                        dim=len(os.listdir(os.path.join(path, "..\dataset"))), 
+                        dataset=os.path.join(path, "..\dataset"), 
+                        use_augmentation=False,
+                        epoch=3)
+    
+    tl.init_model()
+
+    socketio.run(app)
