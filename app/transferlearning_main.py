@@ -140,13 +140,19 @@ class TransferLearning(object):
 
         # save model (.h5)
         PATH = '\\'.join(self.model_name.split('\\')[:-1])
-        new_model_name = "model-cnn-facerecognition.h5"
+        new_model_name = "model_cnn_%s.h5" % self.get_datetime_str()
         self.model.save(os.path.join(PATH, new_model_name))
         
         self.socketio.emit(self.event, "%s training model completed." % self.get_time())
+        self.socketio.sleep(1)
+
+        self.socketio.emit(self.event, "%s starting model otimization for inference." % self.get_time())
         self.socketio.sleep(1)
 
         self.is_running = False
 
     def get_time(self):
         return "[%s]" % datetime.datetime.now().strftime("%H:%M:%S.%f")
+
+    def get_datetime_str(self):
+        return datetime.datetime.now().strftime("%d%m%Y_%H%M%S")

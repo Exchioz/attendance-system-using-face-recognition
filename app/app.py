@@ -141,6 +141,10 @@ def index():
 def history():
     return render_template("history.html")
 
+@app.route("/absensi")
+def absensi():
+    return render_template("absensi.html")
+
 @app.route("/face_registration")
 def face_registration():
     return render_template("face_registration.html")

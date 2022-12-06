@@ -1,0 +1,44 @@
+{% extends "_layout.html" %}
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('index')}}">Home</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<section id="presensi" class="text-center">
+    <div class="container">
+        <div class="col-12">
+            <div class="col-12">
+                <h1>PRESENSI SEKARANG</h1>
+                <p class="mx-auto">Silakan presensi sesuai dengan waktu kedatangan, rapikan penampilanmu dan bersiap! Tunggu hingga sistem mendeteksi nama Anda pada kamera. </p>
+            </div>
+            <div id="video_wrapper" class="container">
+                <img src="{{ url_for('video_feed') }}" style="width:50%; height:auto;">
+            </div>
+            <div class="row justify-content-center" id = "history" style="width:100%; height:100px; overflow-y: hidden;"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var socket = io();
+        socket.on('prediction', function(message) {
+
+            var frame = new Uint8Array(message.frame);
+            var src = URL.createObjectURL( new Blob([frame], { type: 'image/png' }));
+
+            var content = $("#history").html()
+
+            $("#history").html('<div>'+
+                                /*'<img src="' + src + '" class="rounded" style="width:100px;"></img>'+*/ "<br>" +
+                                message.label + " : " + 
+                                ((message.status) ? 'masuk' : 'keluar') + "<br>" +
+                                message.time + 
+                                '</div>' + content);
+            
+        });
+    </script>
+{% endblock %}

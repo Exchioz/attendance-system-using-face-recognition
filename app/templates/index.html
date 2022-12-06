@@ -1,41 +1,327 @@
 {% extends "_layout.html" %}
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="#home">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#peraturan">Peraturan</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#presensi">Presensi</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#tujuan">Tujuan</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#blog">Blog</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#team">Team</a>
+    </li>
+{% endblock %}
 {% block content %}
-<body>
-<div class="container">
-	<div class="jumbotron">
-		<div class="container mb-2">
-			<h3>Live Camera</h3>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div id="video_wrapper" class="container">
-					<img src="{{ url_for('video_feed') }}" width="480">
-				</div>
-			</div>
-			<div id = "history" class="col-md-6 row bg-white pt-3" style="height: 360px;"></div>
-		</div>
+<body >
+    <!-- SLIDER -->
+    <div class="owl-carousel owl-theme hero-slider" id="home">
+        <div class="slide slide1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center text-white">
+                        <h6 class="display-3 my-4">Selamat Datang Di</h6>
+                        <h1 class="display-3 my-7">PRESENSI PEGAWAI<br /></h1>
+                        <a href="#presensi" class="btn btn-brand">Presensi</a>
+                        <a href="#daftar" class="btn btn-outline-light ms-6">Daftar Wajah</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-10 offset-lg-1 text-white">
+                        <h6 class="display-3 my-4">Selamat Datang Di</h6>
+                        <h1 class="display-3 my-7">PRESENSI PEGAWAI<br /></h1>
+                        <a href="#presensi" class="btn btn-brand">Presensi</a>
+                        <a href="#daftar" class="btn btn-outline-light ms-6">Daftar Wajah</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- PERATURAN -->
+    <section id="peraturan">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 py-5">
+                    <div class="row">
+                        <h1>Peraturan Presensi</h1>
+                        <br>
+                        <div class="col-12 mt-4">
+                            <div class="info-box">
+                                <img src="{{ url_for('static', filename='assets/img/icon6.png') }}" alt="">
+                                <div class="ms-4">
+                                    <h5>Daftar Data Wajah</h5>
+                                    <p>Pastikan Anda telah mendaftarkan nama dan wajah Anda, agar 
+                                        dapat dilakukan pendeteksian nama dan wajah dengan sesuai saat presensi dilakukan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mt-4">
+                            <div class="info-box">
+                                <img src="{{ url_for('static', filename='assets/img/icon6.png') }}" alt="">
+                                <div class="ms-4">
+                                    <h5>Sesuai Waktu Kedatangan</h5>
+                                    <p>Presensi harus dilakukan sesuai dengan waktu kedatangan Pegawai, tidak boleh melakukan presensi sebelum tiba 
+                                        di kantor.  Jam Masuk Kantor : 08.00 WIB.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mt-4">
+                            <div class="info-box">
+                                <img src="{{ url_for('static', filename='assets/img/icon4.png') }}" alt="">
+                                <div class="ms-4">
+                                    <h5>Keterlambatan</h5>
+                                    <p>Keterlambatan dihitung berdasarkan jam masuk kantor. Sanksi terlambat masuk kerja ialah dikenakan pemotongan tunjangan harian.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <div class="info-box">
+                                <img src="{{ url_for('static', filename='assets/img/icon4.png') }}" alt="">
+                                <div class="ms-4">
+                                    <h5>Melepas Masker</h5>
+                                    <p>Diharapkan untuk melepas masker saat melakukan presensi karena sistem akan mendeteksi seluruh bagian wajah Anda.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="center" style="padding: 25% 0;">
+                        <img src="{{ url_for('static', filename='assets/img/about.png') }}" alt="" >
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAFTAR -->
+    <section id="presensi">
+        <div class="container">
+            <div class="row text-center justify-content-center gy-4">
+                <div class="col-12" style="width: 50%;">
+                    <h3>Pendaftaran Data Wajah</h3>
+                    <p class="mx-auto">Jika ada pegawai baru atau pegawai lama yang belum mendaftarkan wajahnya</p>
+                    <a href="{{ url_for('face_registration')}}" class="btn btn-brand" style="width:40%;">Daftar</a>
+                </div>
+
+                <div class="col-12" style="width: 50%;">
+                    <h3>Presensi</h3>
+                    <p class="mx-auto">Jika sudah mendaftarkan wajahnya</p>
+                    <a href="{{ url_for('absensi')}}" class="btn btn-brand" style="width:40%;">Presensi Sekarang</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- TUJUAN -->
+    <section id="tujuan" class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                        <h5>Tujuan</h5>
+                        <h1>Metode Face Recognition</h1>
+                        <p class="mx-auto">Presensi dengan metode ini diharapkan mampu mencapai beberapa tujuan :</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon1.png') }}" alt="">
+                        <h5>Contactless</h5>
+                        <p>Sistem ini tidak memerlukan kontak sama sekali dengan mesin. Setiap pengguna juga tidak perlu menyentuh kartu identitas pegawai untuk 
+                            didekatkan ke sensor pembaca. Dengan begini, proses absensi akan menjadi lebih steril.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon5.png') }}" alt="">
+                        <h5>Mencegah Tindakan Kriminal</h5>
+                        <p>Karena foto wajah dan informasi pribadi tersimpan di dataset, maka oknum akan berpikir dua kali untuk melakukan tindakan kriminal. Pihak yang berwajib juga akan lebih mudah menemukan pelaku tindak kriminal.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon3.png') }}" alt="">
+                        <h5>Meningkatkan Efisiensi Kerja</h5>
+                        <p>Hanya butuh waktu beberapa detik saja, para pegawai bisa melakukan pesensi. Hal ini akan berdampak baik pada tingkat efisiensi kerja yaitu dapat menghemat waktu dan memaksimalkan waktu yang dimiliki pegawai untuk bekerja.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon4.png') }}" alt="">
+                        <h5>Meminimalisir Kegagalan Presensi</h5>
+                        <p>Sistem ini sudah menyimpan foto wajah beserta data diri pegawai pada dataset, sehingga kemungkinan kegagalan saat presensi itu kecil untuk berubah ataupun hilang.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon2.png') }}" alt="">
+                        <h5>Meningkatkan Kedisiplinan Pegawai</h5>
+                        <p>Dengan menggunakan teknologi face recognition, akan lebih sulit bagi pegawai untuk memanipulasi absensi, sehingga perusahaan bisa memperoleh data absensi dengan lebih akurat dan real-time.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service">
+                        <img src="{{ url_for('static', filename='assets/img/icon6.png') }}" alt="">
+                        <h5>Mengurangi Kecurangan Presensi</h5>
+                        <p>Penggunaan sistem ini tidak dapat adanya lagi istilah 'tipsen' atau rekan kerja mewakili presensi, karena saat proses presensi dilakukan pendeteksian wajah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                        <h6>Blog</h6>
+                        <h1>Blog Posts</h1>
+                        <p class="mx-auto">Informasi mengenai kemajuan teknologi face recognition dalam bidang presensi dapat Anda lihat pada website yang tersedia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <article class="blog-post">
+                        <img src="{{ url_for('static', filename='assets/img/blogg2.jpg') }}" alt="">
+                        <a href="https://appsensi.com/face-recognition/" class="tag">Visit</a>
+                        <div class="content">
+                            <small>21 Oct, 2021</small>
+                            <h5>Segudang Keuntungan Menggunakan Face Recognition pada Absensi</h5>
+                            <p>Kita semua menyaksikan bagaimana teknologi berkembang sangat cepat. Beberapa manfaat yang bisa Anda dapatkan jika menggunakan face recognition pada sistem absensi bisnis Anda.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="blog-post">
+                        <img src="{{ url_for('static', filename='assets/img/blog1.jpeg') }}" alt="">
+                        <a href="https://www.cnnindonesia.com/teknologi/20220419105404-199-786524/face-recognition-antara-akurasi-lemah-dan-turut-campur-buzzer" class="tag">Visit</a>
+                        <div class="content">
+                            <small>20 Apr, 2022</small>
+                            <h5>Face Recognition, Antara Akurasi Lemah dan Turut Campur Buzzer</h5>
+                            <p>Penggunaan teknologi pengenalan wajah atau face recognition oleh penegak hukum kian mendapat kritik menyusul kesalahan penetapan tersangka dan penyebaran data pribadi.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="blog-post">
+                        <img src="{{ url_for('static', filename='assets/img/blog3.jpg') }}" alt="">
+                        <a href="https://www.hashmicro.com/id/blog/cara-kerja-face-recognition-pada-sistem-absensi-perusahaan/" class="tag">Visit</a>
+                        <div class="content">
+                            <small>10 Oct, 2022</small>
+                            <h5>Cara Kerja Face Recognition pada Sistem Absensi Perusahaan</h5>
+                            <p>Bagi pengguna iPhone mungkin sudah tidak asing dengan teknologi ini melalui fitur Face ID yang milik iPhone. Namun bagaimana cara kerja face recognition berikut penjelasannya.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="intro">
+                        <h6>Team Developers</h6>
+                        <h1>KANYA</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='assets/img/dmitri.jpg') }}" alt="">
+                            <div class="social-icons">
+                                <a href="#"><i class='bx bxl-facebook'></i></a>
+                                <a href="#"><i class='bx bxl-twitter'></i></a>
+                                <a href="#"><i class='bx bxl-instagram'></i></a>
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+
+                        <h5>Dmitri Naufal Ghani</h5>
+                        <p>Modelling Data</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='assets/img/ivan.png') }}" alt="">
+                            <div class="social-icons">
+                                <a href="#"><i class='bx bxl-facebook'></i></a>
+                                <a href="#"><i class='bx bxl-twitter'></i></a>
+                                <a href="#"><i class='bx bxl-instagram'></i></a>
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+
+                        <h5>Ivan Rajwa Naufal</h5>
+                        <p>Back-End Developer</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='assets/img/yun.jpg') }}" alt="">
+                            <div class="social-icons">
+                                <a href="#"><i class='bx bxl-facebook'></i></a>
+                                <a href="#"><i class='bx bxl-twitter'></i></a>
+                                <a href="#"><i class='bx bxl-instagram'></i></a>
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+
+                        <h5>Siti Wahyuni</h5>
+                        <p>Front-End Developer</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-member">
+                        <div class="image">
+                            <img src="{{ url_for('static', filename='assets/img/er.jpg') }}" alt="">
+                            <div class="social-icons">
+                                <a href="#"><i class='bx bxl-facebook'></i></a>
+                                <a href="#"><i class='bx bxl-twitter'></i></a>
+                                <a href="#"><i class='bx bxl-instagram'></i></a>
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+
+                        <h5>Erlia Wiky Rohani Simatupang</h5>
+                        <p>Front-End Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 {% endblock %}
 
 {% block script %}
-    <script>
-        var socket = io();
-        socket.on('prediction', function(message) {
-
-            var frame = new Uint8Array(message.frame);
-            var src = URL.createObjectURL( new Blob([frame], { type: 'image/png' }));
-
-            var content = $("#history").html()
-
-            $("#history").html('<div class="col-md-3 p-1 small">'+
-                                /*'<img src="' + src + '" class="rounded" style="width:100px;"></img>'+*/ "<br>" +
-                                message.label + " : " + 
-                                ((message.status) ? 'masuk' : 'keluar') + "<br>" +
-                                message.time + 
-                                '</div>' + content);
-            
-        });
-    </script>
 {% endblock %}
